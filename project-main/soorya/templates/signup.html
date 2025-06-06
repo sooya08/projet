@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sign Up</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+ body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('https://media.istockphoto.com/vectors/sign-up-neon-sign-on-a-brick-background-vector-id1287390797?k=6&m=1287390797&s=612x612&w=0&h=H89V2wBJGL1yS1VetRiOxBoffwSLD7I2sXaXVAdJCmg=') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #541f1f;
+}
+
+  .container {
+    background: transparent;
+    border-radius: 12px;
+    padding: 40px 30px;
+    width: 350px;
+    box-shadow: none;
+    text-align: center;
+}
+
+  h2 {
+    color: #2575fc;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 28px;
+  }
+  p.info-text {
+    color: #ff4d4d;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  form input[type="text"],
+  form input[type="password"],
+  form select {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 12px 0;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  form input[type="text"]:focus,
+  form input[type="password"]:focus,
+  form select:focus {
+    border-color: #2575fc;
+    outline: none;
+  }
+  button {
+    background: #2575fc;
+    color: white;
+    border: none;
+    width: 100%;
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background: #1a53d8;
+  }
+  p.back-link {
+    margin-top: 25px;
+    font-size: 14px;
+  }
+  p.back-link a {
+    color:rgb(244, 245, 248);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  p.back-link a:hover {
+    text-decoration: underline;
+  }
+  .error-message {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin: 5px 0;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ff4d4d;
+  }
+  .success-message {
+    color: #28a745;
+    font-size: 14px;
+    margin: 5px 0;
+    background-color: #e6ffe6;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #28a745;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Create Account</h2>
+  <p class="info-text">Create a new account for your use</p>
+  {% if error %}
+    <p class="error-message">{{ error }}</p>
+  {% endif %}
+  {% if success %}
+    <p class="success-message">{{ success }}</p>
+  {% endif %}
+  <form id="signupForm" method="POST" action="/login1">
+    <input type="text" name="username" id="username" placeholder="Choose Username" value="{{ username|default('') }}" required />
+    <input type="password" name="password" id="password" placeholder="Choose Password" required />
+    <select name="user_type" id="userType" required>
+      <option value="" disabled {% if not user_type %}selected{% endif %}>Select Role</option>
+      <option value="Faculty" {% if user_type == 'Faculty' %}selected{% endif %}>Faculty</option>
+      <option value="Student" {% if user_type == 'Student' %}selected{% endif %}>Student</option>
+    </select>
+    <button type="submit">Create Account</button>
+  </form>
+  <p class="back-link"><a href="/log">← Back to Login</a></p>
+</div>
+
+</body>
+</html>

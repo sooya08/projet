@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Faculty Publication Tracker</title>
+    <style>
+       body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-image: url('https://wallpaperbat.com/img/312976-free-download-log-on-to-your-bank-account-on-a-laptop-logging.png');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+        .login-container {
+    background: transparent;       /* No background color */
+    backdrop-filter: none;         /* Remove blur if total transparency is needed */
+    border-radius: 20px;
+    box-shadow: none;              /* Remove shadow if you want no visual layer at all */
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    color: #fff;                   /* Keep text white if background is dark */
+}
+
+        .login-container h2 {
+            margin-bottom: 10px;
+            font-size: 28px;
+            color: #fff;
+        }
+
+        .login-container p {
+            color: #f8d7da;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input, select {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .signup-link {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .signup-link a {
+            color: #ffeb3b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>🔐 Login</h2>
+        <p>Login to access all features</p>
+        <form action="/login" method="POST">
+            <input type="text" name="username" placeholder="👤 Username" required>
+            <input type="password" name="password" placeholder="🔑 Password" required>
+            <select name="user_type" required>
+                <option value="">Select Role</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Student">Student</option>
+            </select>
+            <button type="submit">Login</button>
+        </form>
+        <div class="signup-link">
+            <p>Don't have an account? <a href="/signup">Sign up here</a></p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+  const loginForm = document.querySelector('form[action="/login"]');
+  
+  loginForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission for demo purposes
+    
+    const role = document.querySelector('select[name="user_type"]').value;
+    
+    // Store the role in localStorage to access it on the homepage
+    localStorage.setItem('userRole', role);
+    
+    // Redirect to the homepage (for demo, we'll simulate this)
+    window.location.href = '/home'; // Change this to your actual homepage URL
+  });
+});
+document.querySelector('form').addEventListener('submit', function(e) {
+    if (!this.checkValidity()) {
+        e.preventDefault(); // prevents submit if validation fails
+        alert("Please fill the form correctly!");
+    }
+});
+
+    </script>
+</body>
+</html>

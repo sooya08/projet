@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faculty Publication Tracker</title>
+  <style>
+   body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: url("https://cdn.pixabay.com/photo/2015/07/22/21/44/book-856151_1280.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+   .container {
+    background: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: none;
+    text-align: center;
+    width: 300px;
+}
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    button {
+      background: #1E90FF;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #4682B4;
+    }
+   footer {
+    color: #333333;
+    text-shadow: 1px 1px 2px rgba(199, 145, 145, 0.2);
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Faculty Publication Tracker</h1>
+    <button id="submit-publication"><a href="/submitpublication"> Submit Publication</a></button>
+    <button id="view-publications"><a href="/view_publications">View Publications</a></button>
+    <button id="admin-dashboard"><a href="/admin">Admin Dashboard</a></button>
+    <div class="footer"><h3> © 2025 Department of Computer Science</h3></div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const userRole = localStorage.getItem('userRole');
+  
+  const submitPublicationBtn = document.getElementById('submit-publication');
+  const viewPublicationsBtn = document.getElementById('view-publications');
+  const adminDashboardBtn = document.getElementById('admin-dashboard');
+  
+  if (userRole === 'Faculty') {
+    // Show all options for Faculty
+    submitPublicationBtn.style.display = 'block';
+    viewPublicationsBtn.style.display = 'block';
+    adminDashboardBtn.style.display = 'block';
+  } else if (userRole === 'Student') {
+    // Show only View Publications for Student, hide others
+    submitPublicationBtn.style.display = 'none';
+    viewPublicationsBtn.style.display = 'block';
+    adminDashboardBtn.style.display = 'none';
+  }
+});
+  </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Publication</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+      body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: url('https://wallpapercave.com/wp/wp2406557.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.form-container {
+    background: transparent;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: none;
+    border: none;
+    max-width: 500px;
+    width: 100%;
+    color: rgb(197, 191, 191); /* Charcoal dark text */
+}
+
+        h1 {
+            text-align: center;
+            color:rgb(226, 219, 219);
+            margin-bottom: 25px;
+        }
+
+       form input,
+form select,
+form button {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 1px solid rgba(69, 35, 35, 0.6); /* Light border */
+    background: rgba(146, 28, 28, 0.1); /* Light transparent background */
+    color:rgb(190, 173, 173);
+    transition: all 0.3s ease;
+}
+form input::placeholder,
+form select::placeholder {
+    color: rgb(227, 222, 222); 
+    font-weight: bold;
+    opacity: 4;
+}
+=-
+form input:focus,
+form select:focus {
+    outline: none;
+    border-color: #00d4ff; /* Cyan glow */
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #852424;
+}
+
+        form button {
+            background-color: #28a745;
+            color:#0a100b ;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>📄 Submit Publication</h1>
+        <form method="POST" action="/submit">
+            <input type="text" name="faculty_name" placeholder="👨‍🏫 Faculty Name" required>
+            <input type="text" name="department" placeholder="🏢 Department" required>
+            <input type="text" name="title" placeholder="📝 Title of Publication" required>
+
+            <select name="pub_type" required>
+                <option value="">📚 Select Publication Type</option>
+                <option value="Journal">Journal</option>
+                <option value="Conference">Conference</option>
+                <option value="Book">Book</option>
+            </select>
+
+            <input type="text" name="publisher" placeholder="🏛 Publisher Name" required>
+            <input type="email" name="publisher_email" placeholder="✉️ Publisher Email ID" required>
+            <input type="text" name="publication_year" placeholder="📅 Publication Year (e.g., 2024)" required>
+            <input type="url" name="doi_or_link" placeholder="🔗 DOI or Online Link (optional)">
+
+            <button type="submit">✅ Submit</button>
+        </form>
+    </div>
+</body>
+</html> 

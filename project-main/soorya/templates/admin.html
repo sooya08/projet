@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+       body {
+    font-family: 'Segoe UI', sans-serif;
+    background: 
+        url("https://wallpaperaccess.com/full/1764254.jpg") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
+
+
+        .container {
+            width: 95%;
+            margin: 40px auto;
+            background: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(24, 14, 14, 0.15);
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        th, td {
+            padding: 12px 14px;
+            border: 1px solid #ddd;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #7fa5ce;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr {
+            background-color: #f6eeee;
+        }
+
+        tr:hover {
+            background-color: #eef2f7;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 8px;
+            resize: vertical;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 15px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            th, td {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Admin Dashboard - Publication Records</h1>
+        <table>
+            <tr>
+                <th>Faculty</th>
+                <th>Department</th>
+                <th>Title</th>
+                <th>Type</th>
+                <th>Publisher</th>
+                <th>Publisher Email</th>
+                <th>Year</th>
+                <th>DOI/Link</th>
+                <th>Submitted On</th>
+                <th>Send Remark</th>
+            </tr>
+
+            {% for row in records %}
+            <tr>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+                <td>{{ row[4] }}</td>
+                <td>{{ row[5] }}</td>
+                <td>{{ row[6] }}</td>
+                <td>{{ row[7] }}</td>
+                <td>
+                    {% if row[8] %}
+                        <a href="https://www.w3schools.com/html/" target="_blank">View</a>
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+                <td>{{ row[9] }}</td>
+                <td>
+                    <form method="POST" action="/send_remark">
+    <input type="email" name="sender_gmail" placeholder="Your Gmail" required><br>
+    <input type="email" name="publisher_email" placeholder="Recipient Email" required><br>
+    <input type="text" name="title" placeholder="Publication Title" required><br>
+    <textarea name="remark" placeholder="Enter your remark" required></textarea><br>
+    <button type="submit">Send Remark</button>
+</form>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
